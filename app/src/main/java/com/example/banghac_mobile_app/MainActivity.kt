@@ -13,8 +13,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.signUpTxt.setOnClickListener {
-                val intent = Intent(this, SignupActivity::class.java)
-                startActivity(intent)
+            val intent = Intent(this, SignupActivity::class.java)
+            startActivity(intent)
+        }
+        binding.loginBtn.setOnClickListener {
+            val intent = Intent(this, NaviActivity::class.java)
+            startActivity(intent)
         }
     }
 }

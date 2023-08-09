@@ -38,6 +38,7 @@ class NaviActivity : AppCompatActivity() {
         if(manager.findFragmentByTag(tag) == null){
             fragTransaction.add(R.id.mainFrameLayout, fragment, tag)
         }
+
         val newOrder = manager.findFragmentByTag(TAG_CALENDAR)
         val home = manager.findFragmentByTag(TAG_HOME)
         val profile = manager.findFragmentByTag(TAG_PROFILE)
@@ -55,6 +56,13 @@ class NaviActivity : AppCompatActivity() {
         if(chat != null){
             fragTransaction.hide(chat)
         }
+
+        // 네비 프래그먼트를 다시 누르거나 나갔다가 돌아오면 화면이 보이지 않는 내용을 수정
+        if(tag == TAG_CHAT){
+            if(chat != null){
+                fragTransaction.show(chat)
+            }
+        }
         else if(tag == TAG_HOME){
             if(home != null){
                 fragTransaction.show(home)
@@ -65,6 +73,13 @@ class NaviActivity : AppCompatActivity() {
                 fragTransaction.show(profile)
             }
         }
-        fragTransaction.commitAllowingStateLoss()
+        else if(tag == TAG_CALENDAR){
+            if(newOrder != null){
+                fragTransaction.show(newOrder)
+            }
+        }
+
+        // commit() 메서드를 사용하도록 변경
+        fragTransaction.commit()
     }
 }
